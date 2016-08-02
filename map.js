@@ -66,7 +66,6 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 	var myChart = echarts.init(document.getElementById(element));
 	myChart.setOption(option);
 }
-
 function proccessJSON (json) {
 	initMap('plot', 'México', 'Inmigración', json, inmigration_data, ['red','yellow','white'], ['Alto', 'Bajo']);
 }

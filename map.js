@@ -1,3 +1,4 @@
+var myChart;
 function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 	echarts.util.mapData.params.params.HK = {
 		getGeoJson: function (callback){ callback(geoJson) }
@@ -29,8 +30,6 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 				mark : {show: true, title: "Marcar"},
 				markUndo : { title: "Deshacer"},
 				markClear : { title: "Limpiar"},
-				dataZoom : { title: "Zoom"},
-				dataZoomReset : { title: "Zoom 1"},
 				restore : {show: true, title: "Restaurar"},
 				saveAsImage : {show: true, title: "Guardar"}
 			}
@@ -50,6 +49,10 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 				roam: true,
 				mapType: 'HK',
 				data: data,
+				scaleLimit : {
+					max: 2,
+					min: 0.5
+				},
 				itemStyle:{
 					normal: {
 						borderColor: 'black',
@@ -63,8 +66,11 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 		]
 	};
 					
-	var myChart = echarts.init(document.getElementById(element));
+	myChart = echarts.init(document.getElementById(element));
 	myChart.setOption(option);
+	myChart.on(echarts.config.EVENT.CLICK, function (params) {
+		console.log(params);
+	});
 }
 function proccessJSON (json) {
 	initMap('plot', 'México', 'Inmigración', json, inmigration_data, ['red','yellow','white'], ['Alto', 'Bajo']);

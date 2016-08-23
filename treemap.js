@@ -1,21 +1,19 @@
 function hexToRGB (hex) {
 	var r,g,b;
 	hex = hex.replace('#','');
-  r = parseInt(hex.substring(0,2), 16);
-  g = parseInt(hex.substring(2,4), 16);
-  b = parseInt(hex.substring(4,6), 16);
+	r = parseInt(hex.substring(0,2), 16);
+	g = parseInt(hex.substring(2,4), 16);
+	b = parseInt(hex.substring(4,6), 16);
 	return [r,g,b];
 }
 function getBestTextColor (rgb) {
-	 var o = Math.round(((parseInt(rgb[0]) * 299) + (parseInt(rgb[1]) * 587) + (parseInt(rgb[2]) * 114)) /1000);
-    
-    console.log(o);
-    
-    if(o > 125) {
-      return "#000000";
-    }else{ 
-      return "#FFFFFF";
-    }
+	var o = Math.round(((parseInt(rgb[0]) * 299) + (parseInt(rgb[1]) * 587) + (parseInt(rgb[2]) * 114)) /1000);
+		
+	if(o > 125) {
+		return "#000000";
+	}else{ 
+		return "#FFFFFF";
+	}
 }
 function initTreemap (items, property_text, property_value, colors) {
 	var d3 = Plotly.d3;
@@ -39,7 +37,7 @@ function initTreemap (items, property_text, property_value, colors) {
 	for (var i in rectangles) {
 		var color = colorScale([values[counter]]);
 		var shape = {
-		  type: 'rect',
+			type: 'rect',
 			x0: rectangles[i][0],
 			y0: rectangles[i][1],
 			x1: rectangles[i][2],
@@ -52,12 +50,12 @@ function initTreemap (items, property_text, property_value, colors) {
 
 		shapes.push(shape);
 		var annotation = {
-		  x: (rectangles[i][0] + rectangles[i][2]) / 2,
+			x: (rectangles[i][0] + rectangles[i][2]) / 2,
 			y: (rectangles[i][1] + rectangles[i][3]) / 2,
 			text: String(values[counter]),
 			font: {
-        color: getBestTextColor(hexToRGB(color))
-      },
+				color: getBestTextColor(hexToRGB(color))
+			},
 			showarrow: false
 		};
 		annotations.push(annotation);

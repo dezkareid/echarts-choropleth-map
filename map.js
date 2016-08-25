@@ -31,8 +31,9 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 				markUndo : { title: "Deshacer"},
 				markClear : { title: "Limpiar"},
 				restore : {show: true, title: "Restaurar"},
-				saveAsImage : {show: true, title: "Guardar"}
-			}
+				saveAsImage : {show: true, title: "Guardar"},
+
+			},
 		},
 		dataRange: {
 			min: min,
@@ -42,6 +43,13 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 			calculable : true,
 			color: colors
 		},
+		roamController: {
+			show: true,
+			x: 'right',
+			mapTypeControl: {
+			  'HK': true
+			}
+		},
 		series : [
 			{
 				name: title,
@@ -49,10 +57,6 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 				roam: true,
 				mapType: 'HK',
 				data: data,
-				scaleLimit : {
-					max: 2,
-					min: 0.5
-				},
 				itemStyle:{
 					normal: {
 						borderColor: 'black',
@@ -61,7 +65,8 @@ function initMap (element, title, subtext, geoJson, data, colors, rangeTexts) {
 					emphasis:{
 						label:{show:true}
 					}
-				}
+				},
+				roam: false
 			}
 		]
 	};

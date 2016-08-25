@@ -45,14 +45,20 @@ function initMap (element, title, subtext, geoJson, data, ranges, colors, rangeT
 			splitNumber : ranges.length,
 			realtime: false,
 			calculable : true,
-			//splitList : ranges,
 			color: colors
+		},
+		roamController: {
+			show: true,
+			x: 'right',
+			mapTypeControl: {
+			  'HK': true
+			}
 		},
 		series : [
 			{
 				name: title,
 				type: 'map',
-				roam: true,
+				roam: false,
 				mapType: 'HK',
 				data: data,
 				itemStyle:{

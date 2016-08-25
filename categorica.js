@@ -45,7 +45,6 @@ function initMap (element, title, subtext, geoJson, data, ranges, colors, rangeT
 			splitNumber : 3,
 			realtime: false,
 			calculable : false,
-			//splitList : ranges,
 			formatter: function  (v1,v2) {
 				var label = rangeTexts[index];
 				index++;
@@ -53,11 +52,18 @@ function initMap (element, title, subtext, geoJson, data, ranges, colors, rangeT
 			},
 			color: colors
 		},
+		roamController: {
+			show: true,
+			x: 'right',
+			mapTypeControl: {
+			  'HK': true
+			}
+		},
 		series : [
 			{
 				name: title,
 				type: 'map',
-				roam: true,
+				roam: false,
 				mapType: 'HK',
 				data: data,
 				itemStyle:{
